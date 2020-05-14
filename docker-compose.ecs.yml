@@ -34,6 +34,7 @@ services:
             - JIBRI_RECORDER_USER
             - JIBRI_RECORDER_PASSWORD
             - ENABLE_RECORDING
+            - TURN_ENABLE
         links:
             - "prosody:xmpp.meet.jitsi"
         networks:
@@ -98,6 +99,11 @@ services:
             - JWT_TOKEN_AUTH_MODULE
             - LOG_LEVEL
             - TZ
+            - TURN_ENABLE
+            - TURN_SECRET
+            - TURN_HOST
+            - TURN_PORT
+            - TURN_TRANSPORT
         networks:
             meet.jitsi:
                 aliases:
@@ -155,6 +161,31 @@ services:
             - prosody
         links:
             - "prosody:xmpp.meet.jitsi"
+        networks:
+            meet.jitsi:
+
+    # coturn TURN server project
+    turn:
+        image: jitsi/turn
+        restart: always
+        ports:
+            - '${TURN_PORT}:${TURN_PORT}/tcp'
+            - '${TURN_PORT}:${TURN_PORT}/udp'
+            - '${TURN_RTP_MIN}-${TURN_RTP_MAX}:${TURN_RTP_MIN}-${TURN_RTP_MAX}/udp'
+            - '${TURN_ADMIN_PORT}:${TURN_ADMIN_PORT}/tcp'
+        environment:
+            - DOCKER_HOST_ADDRESS
+            - TURN_SECRET
+            - TURN_REALM
+            - TURN_HOST
+            - TURN_PORT
+            - TURN_TRANSPORT
+            - TURN_RTP_MIN
+            - TURN_RTP_MAX
+            - TURN_ADMIN_ENABLE
+            - TURN_ADMIN_USER
+            - TURN_ADMIN_SECRET
+            - TURN_ADMIN_PORT
         networks:
             meet.jitsi:
 
