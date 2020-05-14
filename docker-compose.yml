@@ -172,7 +172,7 @@ services:
     # coturn TURN server project
     turn:
         image: jitsi/turn
-        restart: always
+        restart: ${RESTART_POLICY}
         volumes:
             - ${CONFIG}/turn:/config
         ports:
