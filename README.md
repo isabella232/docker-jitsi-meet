@@ -85,7 +85,7 @@ several container images are provided.
 
 ### External Ports
 
-The following external ports must be opened on a firweall:
+The following external ports must be opened on a firewall:
 
 * 80/tcp for Web UI HTTP (really just to redirect, after uncommenting ENABLE_HTTP_REDIRECT=1 in .env)
 * 443/tcp for Web UI HTTPS
@@ -95,7 +95,7 @@ The following external ports must be opened on a firweall:
 * 5349/udp for TURN data over UDP
 * 16000-17000/udp for TURN RTP media over UDP
 
-Also 20000-20050/udp for jigasi, in case you choose to deploy that to facilitate SIP acces.
+Also 20000-20050/udp for jigasi, in case you choose to deploy that to facilitate SIP access.
 
 E.g. on a CentOS/Fedora server this would be done like this (without SIP access):
 
