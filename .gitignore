@@ -3,3 +3,4 @@
 .env.bak
 docker-compose.override.yml
 build
+interface_config.js
