@@ -115,6 +115,13 @@ if [[ ! -f /config/config.js ]]; then
              /config/config.js
     fi
 
+    if [[ ! -z "${CALLSTATS_APP_ID}" && ! "${CALLSTATS_APP_SECRET}" ]]; then
+        sed -i \
+            -e "s#// callStatsID: '',#callStatsID: '${CALLSTATS_APP_ID}',#" \
+            -e "s#// callStatsSecret: '',#callStatsSecret: '${CALLSTATS_APP_SECRET}',#" \
+        /config/config.js
+    fi
+
 fi
 
 # if [[ ! -f /config/interface_config.js ]]; then
